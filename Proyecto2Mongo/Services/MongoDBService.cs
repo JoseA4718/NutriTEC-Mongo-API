@@ -37,10 +37,9 @@ public class MongoDBService{
         return;
     }
 
-    public async Task<List<Feedback>> GetSpecifiedFeedback(string email, string date){
+    public async Task<List<Feedback>> GetSpecifiedFeedback(string email){
         FilterDefinition<Feedback> email_filter = Builders<Feedback>.Filter.Eq("client",email);
-        FilterDefinition<Feedback> date_filter = Builders<Feedback>.Filter.Eq("date",date);
-        return await _feedbackCollection.Find(new BsonDocument { { "client", email }, { "date", date} }).ToListAsync();
+        return await _feedbackCollection.Find(new BsonDocument { { "client", email } }).ToListAsync();
  
     }
 }

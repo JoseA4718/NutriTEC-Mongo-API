@@ -46,7 +46,7 @@ public class FeedbackController : Controller{
     [HttpPost("get_feedback")]
     public async Task<List<Feedback>> GetSpecifiedFeedbacks([FromBody] Feedback_query feedback)
     {
-        return await _mongoDBService.GetSpecifiedFeedback(feedback.client,feedback.date);
+        return await _mongoDBService.GetSpecifiedFeedback(feedback.client);
     }
 
 
