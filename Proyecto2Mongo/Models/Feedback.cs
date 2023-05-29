@@ -8,7 +8,7 @@ public class Feedback{
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id {get; set;}
+    public string? id {get; set;}
     public string client {get;set;} = null!;
     public string nutritionist {get; set;} = null!;
     public string message{get;set;} = null!;

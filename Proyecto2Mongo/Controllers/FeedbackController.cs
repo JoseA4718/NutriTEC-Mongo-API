@@ -19,14 +19,14 @@ public class FeedbackController : Controller{
     [HttpGet("get_all_feedback")]
     public async Task<List<Feedback>> GetFeedbacks(){
         return await _mongoDBService.GetFeedback();
-    }
+    }   
 
 
 
     [HttpPost("add_feedback")]
-    public async Task<IActionResult> PostFeedbacks(Feedback feedback){
+    public async Task<IActionResult> PostFeedbacks([FromBody] Feedback feedback){
         await _mongoDBService.CreateFeedback(feedback);
-        return CreatedAtAction(nameof(GetFeedbacks), new {id = feedback.Id}, feedback);
+        return CreatedAtAction(nameof(GetFeedbacks), new {id = feedback.id}, feedback);
     }
 
 
@@ -44,8 +44,9 @@ public class FeedbackController : Controller{
         return NoContent();
     }
     [HttpPost("get_feedback")]
-    public async Task<List<Feedback>> GetSpecifiedFeedbacks(string email, string date){
-        return await _mongoDBService.GetSpecifiedFeedback(email, date);
+    public async Task<List<Feedback>> GetSpecifiedFeedbacks([FromBody] Feedback_query feedback)
+    {
+        return await _mongoDBService.GetSpecifiedFeedback(feedback.client,feedback.date);
     }
 
 
